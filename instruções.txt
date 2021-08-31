@@ -1,0 +1,24 @@
+sudo nano /etc/systemd/system/wsnotify.service
+
+[Unit]
+Description=Notify Server
+After=network.target
+
+[Service]
+User=ubuntu
+WorkingDirectory=/home/ubuntu/ws
+ExecStart=python3 app.py
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+
+sudo systemctl daemon-reload
+sudo systemctl start wsnotify
+sudo systemctl restart wsnotify
+sudo systemctl status wsnotify
+
+
+#DOCKER
+sudo docker build -t wsnotify:latest .
+sudo docker run -d -p 8090:5590 wsnotify:latest

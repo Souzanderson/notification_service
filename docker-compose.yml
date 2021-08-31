@@ -1,0 +1,10 @@
+version: '3.7'
+
+services:
+  app:
+    build: .
+    restart: always
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - 8991:5590
